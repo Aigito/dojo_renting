@@ -5,3 +5,24 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+puts "Cleaning database..."
+
+DojoSpace.destroy_all
+
+puts "Creating Dojo Spaces..."
+
+50.times do
+
+    dojo_space = DojoSpace.create(
+        name: "#{Faker::Name.first_name}'s Dojo Space",
+        price: [35, 50, 75].sample,
+        location: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+        martial_art: ["Karate", "Jujiutsu", "Judo"].sample,
+        user_id: [2].sample
+    )
+
+    puts "Created #{dojo_space.name}"
+
+end
+
+puts "Finished!"
