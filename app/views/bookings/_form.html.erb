@@ -1,0 +1,5 @@
+<%= simple_form_for [@dojo_space, @booking] do |f| %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>

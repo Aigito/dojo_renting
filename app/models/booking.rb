@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :dojo_space
+  has_many :reviews
 
   validate :end_after_start
   validates :start_date, :end_date, presence: true
