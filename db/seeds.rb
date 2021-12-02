@@ -16,7 +16,7 @@ puts "Creating Dojo Spaces..."
     dojo_space = DojoSpace.create(
         name: "#{Faker::Name.first_name}'s Dojo Space",
         price: [35, 50, 75].sample,
-        location: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+        location: "#{Faker::Address.city}",
         martial_art: ["Karate", "Jujiutsu", "Judo"].sample,
         user_id: [2].sample
     )
