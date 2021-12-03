@@ -1,2 +1,5 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Dojo Rental</h1>
+
+<% @dojo_spaces.each do |space| %>
+  <p><%= link_to space.name, dojo_space_path(space) %> - <%= link_to space.martial_art, "https://en.wikipedia.org/wiki/#{space.martial_art}" %></p>
+<% end %>
