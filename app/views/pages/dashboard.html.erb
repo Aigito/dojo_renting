@@ -9,11 +9,30 @@
   <% end %>
 
   <h3>Your Booking Requests</h3>
-  <% @bookings.each do |booking| %>
-    <% if booking.dojo_space.user_id == current_user.id %>
-      <p><%= link_to booking.id, dojo_space_booking_path(booking.dojo_space_id, booking.id) %></p>
-    <% end %>
-  <% end %>
+    <table class="table">
+      <tr>
+        <th>Booking ID</th>
+        <th>Dojo Space</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Booking Status</th>
+      </tr>
+      <% @bookings.each do |booking| %>
+        <% if booking.dojo_space.user_id == current_user.id %>
+          <tr>
+            <td><%= booking.id %></td>
+            <td><%= booking.dojo_space.name %></td>
+            <td><%= booking.start_date %></td>
+            <td><%= booking.end_date %></td>
+            <td>
+              <%= "PENDING" if booking.accepted == nil %>
+              <%= "ACCEPTED" if booking.accepted == true %>
+              <%= "DECLINED" if booking.accepted == false %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
 
   <h3>Your Dojos</h3>
   <% @dojo_spaces.each do |space| %>
