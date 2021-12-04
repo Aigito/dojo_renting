@@ -1,5 +1,7 @@
-<h1>Dojo Rental</h1>
+<div class="container">
+  <h1>Dojo Rental</h1>
 
-<% @dojo_spaces.each do |space| %>
-  <p><%= link_to space.name, dojo_space_path(space) %> - <%= link_to space.martial_art, "https://en.wikipedia.org/wiki/#{space.martial_art}" %></p>
-<% end %>
+  <% @dojo_spaces.each do |space| %>
+    <p><%= link_to space.name, dojo_space_path(space) %> - <%= link_to space.martial_art, "https://en.wikipedia.org/wiki/#{space.martial_art}" %></p>
+  <% end %>
+</div>

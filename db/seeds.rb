@@ -18,7 +18,7 @@ puts "Creating Dojo Spaces..."
         price: [35, 50, 75].sample,
         location: "#{Faker::Address.city}",
         martial_art: ["Karate", "Jujiutsu", "Judo"].sample,
-        user_id: [1].sample
+        user_id: [1, 2].sample
     )
 
     puts "Created #{dojo_space.name}"

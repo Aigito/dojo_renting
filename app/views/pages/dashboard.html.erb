@@ -1,2 +1,24 @@
-<h1>Pages#dashboard</h1>
-<p>Find me in app/views/pages/dashboard.html.erb</p>
+<div class="container">
+  <h1>Dashboard - <%= current_user.first_name%> <%= current_user.last_name%></h1>
+
+  <h3>Your Bookings</h3>
+  <% @bookings.each do |booking| %>
+    <% if booking.user == current_user %>
+      <p><%= link_to booking.id, dojo_space_booking_path(booking.dojo_space_id, booking.id) %></p>
+    <% end %>
+  <% end %>
+
+  <h3>Your Booking Requests</h3>
+  <% @bookings.each do |booking| %>
+    <% if booking.dojo_space.user_id == current_user.id %>
+      <p><%= link_to booking.id, dojo_space_booking_path(booking.dojo_space_id, booking.id) %></p>
+    <% end %>
+  <% end %>
+
+  <h3>Your Dojos</h3>
+  <% @dojo_spaces.each do |space| %>
+    <% if space.user == current_user %>
+      <p><%= link_to space.name, dojo_space_path(space) %> - <%= link_to space.martial_art, "https://en.wikipedia.org/wiki/#{space.martial_art}" %></p>
+    <% end %>
+  <% end %>
+</div>
