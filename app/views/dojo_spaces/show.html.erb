@@ -1,16 +1,17 @@
 <div class="container">
 
+  <br>
   <h1><%= @dojo_space.name %></h1>
   <br>
   <h2>Martial Art: <%= @dojo_space.martial_art %></h2>
   <h2>Location: <%= @dojo_space.location %></h2>
   <h2>Price: $<%= @dojo_space.price %> per day</h2>
   <br>
-  <%= link_to "Create a New Booking", new_dojo_space_booking_path(@dojo_space) %>
-  <br>
+  <%= link_to "Create a New Booking", new_dojo_space_booking_path(@dojo_space), class: "btn btn-primary" %>
+
   <%= link_to "Delete #{@dojo_space.name}",
             dojo_space_path(@dojo_space),
             method: :delete,
-            data: { confirm: "Are you sure?" } %>
+            data: { confirm: "Are you sure?" }, class: "btn btn-link" %>
 
 </div>
