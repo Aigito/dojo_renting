@@ -7,22 +7,54 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "Cleaning database..."
 
+User.destroy_all
 DojoSpace.destroy_all
 
+puts "Creating Users..."
+
+4.times do
+  user = User.create(
+    first_name: "#{Faker::Name.first_name}",
+    last_name: "#{Faker::Name.last_name}",
+    email: "#{Faker::Internet.email}",
+    password: "dojo123"
+  )
+
+  puts "Created User #{user.first_name} #{user.last_name}"
+end
+
 puts "Creating Dojo Spaces..."
-
 50.times do
+  dojo_space = DojoSpace.create(
+    name: "#{Faker::Name.first_name}'s Dojo Space",
+    price: [35, 50, 75].sample,
+    location: "#{Faker::Address.city}",
+    martial_art: ["Karate", "Jujiutsu", "Judo"].sample,
+    user_id: rand(1..4)
+  )
+  puts "Created Space #{dojo_space.name}"
+end
 
-    dojo_space = DojoSpace.create(
-        name: "#{Faker::Name.first_name}'s Dojo Space",
-        price: [35, 50, 75].sample,
-        location: "#{Faker::Address.street_address}, #{Faker::Address.city}",
-        martial_art: ["Karate", "Jujiutsu", "Judo"].sample,
-        user_id: [2].sample
-    )
+puts "Creating Bookings..."
+50.times do
+  booking = Booking.create(
+    start_date: Date.strptime("03-02-2022", "%d-%m-%Y"),
+    end_date: Date.strptime("03-02-2022", "%d-%m-%Y"),
+    user_id: rand(1..4),
+    accepted: [true, false].sample,
+    dojo_space_id: rand(1..50)
+  )
+  puts "Created Booking for #{DojoSpace.find(booking.dojo_space_id).name}"
+end
 
-    puts "Created #{dojo_space.name}"
-
+puts "Creating Reviews..."
+50.times do
+  review = Review.create!(
+    content: "#{Faker::Restaurant.review}",
+    rating: rand(1..4),
+    booking_id: rand(1..50)
+  )
+  puts "Created review for #{review.booking_id}"
 end
 
 puts "Finished!"
