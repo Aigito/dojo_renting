@@ -1,7 +1,19 @@
 <div class="container">
   <h1>Dojo Rental</h1>
-
-  <% @dojo_spaces.each do |space| %>
-    <p><%= link_to space.name, dojo_space_path(space) %> - <%= link_to space.martial_art, "https://en.wikipedia.org/wiki/#{space.martial_art}" %></p>
-  <% end %>
+    <table class="table">
+      <tr>
+        <th>Dojo Space</th>
+        <th>Price per Day</th>
+        <th>Location</th>
+        <th>Suitable For</th>
+      </tr>
+      <% @dojo_spaces.each do |space| %>
+        <tr>
+          <td><%= link_to space.name, dojo_space_path(space) %></td>
+          <td><%= space.price %></td>
+          <td><%= space.location %></td>
+          <td><%= space.martial_art %></td>
+        </tr>
+      <% end %>
+    </table>
 </div>
