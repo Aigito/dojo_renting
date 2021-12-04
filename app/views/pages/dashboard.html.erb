@@ -11,7 +11,7 @@
   <h3>Your Bookings</h3>
   <% @bookings.each do |booking| %>
     <% if booking.user == current_user %>
-      <p><%= link_to booking.id, "/" %></p>
+      <p><%= link_to booking.id, dojo_space_booking_path(booking.dojo_space_id, booking.id) %></p>
     <% end %>
   <% end %>
 </div>
