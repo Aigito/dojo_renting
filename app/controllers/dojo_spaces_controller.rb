@@ -6,6 +6,7 @@ class DojoSpacesController < ApplicationController
   end
 
   def show
+
   end
 
   def edit
