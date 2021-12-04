@@ -1,2 +1,75 @@
-<h1>Pages#dashboard</h1>
-<p>Find me in app/views/pages/dashboard.html.erb</p>
+<div class="container">
+  <h1>Dashboard - <%= current_user.first_name%> <%= current_user.last_name%></h1>
+
+  <h3>My Bookings</h3>
+    <table class="table">
+        <tr>
+          <th>Booking ID</th>
+          <th>Dojo Space</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Booking Status</th>
+        </tr>
+        <% @bookings.each do |booking| %>
+          <% if booking.user == current_user %>
+            <tr>
+              <td><%= link_to booking.id, dojo_space_booking_path(booking.dojo_space_id, booking.id) %></td>
+              <td><%= booking.dojo_space.name %></td>
+              <td><%= booking.start_date %></td>
+              <td><%= booking.end_date %></td>
+              <td>
+                <%= "PENDING" if booking.accepted == nil %>
+                <%= "ACCEPTED" if booking.accepted == true %>
+                <%= "DECLINED" if booking.accepted == false %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+
+  <h3>My Booking Requests</h3>
+    <table class="table">
+      <tr>
+        <th>Booking ID</th>
+        <th>Dojo Space</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Booking Status</th>
+      </tr>
+      <% @bookings.each do |booking| %>
+        <% if booking.dojo_space.user_id == current_user.id %>
+          <tr>
+            <td><%= link_to booking.id, dojo_space_booking_path(booking.dojo_space_id, booking.id) %></td>
+            <td><%= booking.dojo_space.name %></td>
+            <td><%= booking.start_date %></td>
+            <td><%= booking.end_date %></td>
+            <td>
+              <%= "PENDING" if booking.accepted == nil %>
+              <%= "ACCEPTED" if booking.accepted == true %>
+              <%= "DECLINED" if booking.accepted == false %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+
+  <h3>My Dojos</h3>
+    <table class="table">
+      <tr>
+        <th>Dojo Space</th>
+        <th>Price per Day</th>
+        <th>Location</th>
+        <th>Suitable For</th>
+      </tr>
+      <% @dojo_spaces.each do |space| %>
+        <% if space.user == current_user %>
+          <tr>
+            <td><%= link_to space.name, dojo_space_path(space) %></td>
+            <td><%= space.price %></td>
+            <td><%= space.location %></td>
+            <td><%= space.martial_art %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+</div>

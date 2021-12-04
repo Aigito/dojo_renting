@@ -1,5 +1,16 @@
-<%= simple_form_for [@dojo_space, @booking] do |f| %>
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.submit "Save", class: "btn btn-primary" %>
-<% end %>
+<div class="container">
+
+  <br>
+  <h1>Create a New Booking for <%= @dojo_space.name %></h1>
+  <h4>$<%= @dojo_space.price %> per day</h4>
+  <br>
+  <%= simple_form_for [@dojo_space, @booking] do |f| %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <br>
+    <%= f.submit "Reserve", class: "btn btn-primary" %>
+    <%= link_to "Cancel Booking", dojo_space_path(@dojo_space), class: "btn btn-link" %>
+  <% end %>
+
+
+</div>

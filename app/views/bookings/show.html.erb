@@ -1,4 +1,11 @@
-<h1>Dojo Space: <%= @dojo_space.name %></h1>
-<h1>Booking ID: <%= @booking.id %></h1>
-<h1>Start date: <%= @booking.start_date %></h1>
-<h1>End date: <%= @booking.end_date %></h1>
+<div class="container">
+
+  <br>
+  <h1>Your Booking Request has been submitted to <%= @dojo_space.name %></h1>
+  <br>
+  <h3>Start date: <%= @booking.start_date %></h3>
+  <h3>End date: <%= @booking.end_date %></h3>
+  <br>
+  <%= link_to "Back to Dojo Spaces", root_path, class: "btn btn-primary" %>
+
+</div>
