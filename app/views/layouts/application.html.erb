@@ -12,19 +12,9 @@
   </head>
 
   <body>
-
     <%= render 'shared/navbar'%>
-     <%= form_tag dojo_spaces_path, method: :get do %>
-      <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-      placeholder: "Enter a dojo location"
-      %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
-<% end %>
     <%= yield %>
   </body>
 </html>
