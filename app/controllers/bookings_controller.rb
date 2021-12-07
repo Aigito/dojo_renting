@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :find_dojo_space
+  before_action :find_dojo_space, except: %i[accept deny]
 
   def index
     @bookings = Booking.all
@@ -29,6 +29,18 @@ class BookingsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def accept
+    @booking = Booking.find(params[:id])
+    @booking.update(accepted: true)
+    redirect_to dashboard_path
+  end
+
+  def deny
+    @booking = Booking.find(params[:id])
+    @booking.update(accepted: false)
+    redirect_to dashboard_path
   end
 
   private

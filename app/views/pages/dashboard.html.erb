@@ -35,6 +35,7 @@
         <th>Start Date</th>
         <th>End Date</th>
         <th>Booking Status</th>
+        <th>Actions</th>
       </tr>
       <% @bookings.each do |booking| %>
         <% if booking.dojo_space.user_id == current_user.id %>
@@ -47,6 +48,10 @@
               <%= "PENDING" if booking.accepted == nil %>
               <%= "ACCEPTED" if booking.accepted == true %>
               <%= "DECLINED" if booking.accepted == false %>
+            </td>
+            <td>
+              <%= link_to 'ACCEPT', accept_booking_path(booking), method: :post%>
+              <%= link_to 'DENY', deny_booking_path(booking), method: :post%>
             </td>
           </tr>
         <% end %>
