@@ -233,8 +233,7 @@ GEM
       nokogiri (~> 1.8)
     zeitwerk (2.5.1)
 
-
-  x86_64-darwin-17
+PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
