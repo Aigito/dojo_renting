@@ -1,19 +1,4 @@
 <div class="container">
   <h1>Dojo Rental</h1>
-    <table class="table">
-      <tr>
-        <th>Dojo Space</th>
-        <th>Price per Day</th>
-        <th>Location</th>
-        <th>Suitable For</th>
-      </tr>
-      <% @dojo_spaces.each do |space| %>
-        <tr>
-          <td><%= link_to space.name, dojo_space_path(space) %></td>
-          <td><%= space.price %></td>
-          <td><%= space.location %></td>
-          <td><%= space.martial_art %></td>
-        </tr>
-      <% end %>
-    </table>
+  <%= render 'shared/dojotable'%>
 </div>
