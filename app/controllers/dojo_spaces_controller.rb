@@ -1,12 +1,16 @@
 class DojoSpacesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
   before_action :find_dojo_space, only: %i[show edit update destroy]
 
   def index
-    @dojo_spaces = DojoSpace.all
+    if params[:query].present?
+      @dojo_spaces = DojoSpace.search_by_location_martial_art_name(params[:query])
+    else
+      @dojo_spaces = DojoSpace.all
+    end
   end
 
   def show
-
   end
 
   def edit
