@@ -2,11 +2,14 @@ class DojoSpacesController < ApplicationController
   before_action :find_dojo_space, only: %i[show edit update destroy]
 
   def index
-    @dojo_spaces = DojoSpace.all
+    if params[:query].present?
+      @dojo_space = DojoSpace.search_by_location(params[:query])
+    else
+      @dojo_space = DojoSpace.all
+    end
   end
 
   def show
-
   end
 
   def edit
