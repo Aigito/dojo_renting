@@ -50,7 +50,8 @@
               <%= "DECLINED" if booking.accepted == false %>
             </td>
             <td>
-              <%= link_to "ACCEPT","/", :method=> :post %>
+              <%= link_to 'ACCEPT', accept_booking_path(booking), method: :post%>
+              <%= link_to 'DENY', deny_booking_path(booking), method: :post%>
             </td>
           </tr>
         <% end %>

@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'pages#dashboard'
 
+  post 'bookings/:id/accept', to: 'bookings#accept', as: :accept_booking
+  post 'bookings/:id/deny', to: 'bookings#deny', as: :deny_booking
+
   resources :dojo_spaces do
     resources :bookings, except: %i[edit destroy] do
       resources :reviews, only: %i[create]
