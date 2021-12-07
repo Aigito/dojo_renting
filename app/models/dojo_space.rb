@@ -8,8 +8,8 @@ class DojoSpace < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   include PgSearch::Model
-  pg_search_scope :search_by_location,
-  against: [ :location ],
+  pg_search_scope :search_by_location_martial_art_name,
+  against: [ :location, :martial_art, :name ],
   using: {
     tsearch: { prefix: true } # <-- now `superman batm` will return something!
   }

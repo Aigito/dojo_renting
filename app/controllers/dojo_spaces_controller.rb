@@ -3,7 +3,7 @@ class DojoSpacesController < ApplicationController
 
   def index
     if params[:query].present?
-      @dojo_space = DojoSpace.search_by_location(params[:query])
+      @dojo_space = DojoSpace.search_by_location_martial_art_name(params[:query])
     else
       @dojo_space = DojoSpace.all
     end
