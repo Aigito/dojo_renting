@@ -1,4 +1,5 @@
 class DojoSpacesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
   before_action :find_dojo_space, only: %i[show edit update destroy]
 
   def index
