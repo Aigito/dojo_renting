@@ -3,6 +3,7 @@
   <br>
   <h1><%= @dojo_space.name %></h1>
   <br>
+  <%= cl_image_tag @dojo_space.photo.key, height: 300, width: 400, crop: :fill %>
   <h2>Martial Art: <%= @dojo_space.martial_art %></h2>
   <h2>Location: <%= @dojo_space.location %></h2>
   <h2>Price: $<%= @dojo_space.price %> per day</h2>

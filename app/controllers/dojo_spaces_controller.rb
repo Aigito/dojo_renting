@@ -14,6 +14,11 @@ class DojoSpacesController < ApplicationController
   end
 
   def edit
+    if @dojo_space.user == current_user
+      render :edit
+    else
+      render :show
+    end
   end
 
   def update
@@ -48,6 +53,6 @@ class DojoSpacesController < ApplicationController
   end
 
   def dojo_space_params
-    params.require(:dojo_space).permit(:name, :price, :location, :martial_art)
+    params.require(:dojo_space).permit(:name, :price, :location, :martial_art, :photo)
   end
 end
