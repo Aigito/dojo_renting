@@ -10,6 +10,11 @@ class DojoSpacesController < ApplicationController
   end
 
   def edit
+    if @dojo_space.user == current_user
+      render :edit
+    else
+      render :show
+    end
   end
 
   def update

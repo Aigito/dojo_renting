@@ -68,6 +68,11 @@
             <td><%= space.price %></td>
             <td><%= space.location %></td>
             <td><%= space.martial_art %></td>
+            <td><%= link_to edit_dojo_space_path(space) do %>
+                  <i class="far fa-edit"></i>
+                <% end %>
+            </td>
+
           </tr>
         <% end %>
       <% end %>
