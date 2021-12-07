@@ -49,6 +49,6 @@ class DojoSpacesController < ApplicationController
   end
 
   def dojo_space_params
-    params.require(:dojo_space).permit(:name, :price, :location, :martial_art)
+    params.require(:dojo_space).permit(:name, :price, :location, :martial_art, :photo)
   end
 end
