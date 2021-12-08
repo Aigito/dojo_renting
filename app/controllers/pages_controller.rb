@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @dojo_spaces = DojoSpace.all
+    @dojo_spaces = DojoSpace.all.order('martial_art', 'price')
     @bookings = Booking.all.order('id')
   end
 end
