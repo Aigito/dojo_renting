@@ -3,6 +3,16 @@ class PagesController < ApplicationController
 
   def home
     @dojo_spaces = DojoSpace.all.order('martial_art', 'price')
+
+    # the `geocoded` scope filters only flats with coordinates (latitude & longitude)
+    @markers = @dojo_spaces.geocoded.map do |dojospace|
+      {
+        lat: dojospace.latitude,
+        lng: dojospace.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { dojospace: dojospace })
+      }
+    end
+
   end
 
   def dashboard

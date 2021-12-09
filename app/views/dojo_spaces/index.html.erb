@@ -1,12 +1,14 @@
-<div class="container">
-<% if !params[:query].present? %>
-<h1>Dojo Rental</h1>
-<% elsif @dojo_spaces.count > 0 %>
-<h1>Search Results</h1>
-<%else %>
-<p><%= "Your search didn't return any results" %></p>
-<% end %>
 
-<%= render 'shared/dojotable'%>
+<div class="container">
+
+  <% if !params[:query].present? %>
+  <h1>Dojo Rental</h1>
+  <% elsif @dojo_spaces.count > 0 %>
+  <h1>Search Results</h1>
+  <%else %>
+  <p><%= "Your search didn't return any results" %></p>
+  <% end %>
+
+  <%= render 'shared/dojotable' %>
 
 </div>
