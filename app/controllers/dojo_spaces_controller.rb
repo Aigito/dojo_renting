@@ -8,6 +8,7 @@ class DojoSpacesController < ApplicationController
     else
       @dojo_spaces = DojoSpace.all
     end
+
   end
 
   def show
