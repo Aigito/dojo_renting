@@ -1,0 +1,12 @@
+<div class="container">
+
+  <br>
+  <h1>Leave a review for your dojo booking</h1>
+  <br>
+  <%= simple_form_for [@dojo_space, @booking, @review] do |f| %>
+    <%= f.input :content %>
+    <%= f.input :rating %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+
+</div>

@@ -1,9 +1,10 @@
+<div class="container d-flex justify-content-between">
 <div class="container">
 
   <br>
   <h1><%= @dojo_space.name %></h1>
   <br>
-  <%= cl_image_tag @dojo_space.photo.key, height: 300, width: 400, crop: :fill %>
+  <%= cl_image_tag @dojo_space.photo.key, height: 300, width: 400, crop: :fill if @dojo_space.photo.attached? %>
   <h2>Martial Art: <%= @dojo_space.martial_art %></h2>
   <h2>Location: <%= @dojo_space.location %></h2>
   <h2>Price: $<%= @dojo_space.price %> per day</h2>
@@ -15,4 +16,19 @@
             method: :delete,
             data: { confirm: "Are you sure?" }, class: "btn btn-link" %>
 
+</div>
+
+<div class = "container">
+
+<br>
+<h1><%= "List of reviews"  %></h1>
+<br>
+
+  <% @dojo_space.bookings.each do |booking|  %>
+  <% booking.reviews.each do |review| %>
+  <p><%= review.content %> <%= review.rating %>/5 </p>
+  <% end %>
+  <% end %>
+
+</div>
 </div>
