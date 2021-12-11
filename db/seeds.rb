@@ -14,7 +14,7 @@ def attach_photo(object, url)
   end
 end
 
-puts "Cleaning database...
+puts "Cleaning database..."
 
 User.destroy_all
 DojoSpace.destroy_all

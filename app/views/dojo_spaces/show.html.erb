@@ -15,12 +15,18 @@
         <% end %>
       </div>
       <div class="carousel-item">
-        <%= image_tag "dojo1", height: 300, width: 400, crop: :fill %>
-        <%# <%= cl_image_tag @dojo_space.photos[2].key, height: 300, width: 400, crop: :fill if @dojo_space.photos.attached? %>
+        <% if @dojo_space.photos.attached? %>
+        <%= cl_image_tag @dojo_space.photos[0].key, height: 300, width: 400, crop: :fill %>
+        <% else %>
+        <%= image_tag "dojo3", height: 300, width: 400, crop: :fill   %>
+        <% end %>
       </div>
       <div class="carousel-item">
-        <%= image_tag "dojo4", height: 300, width: 400, crop: :fill %>
-        <%# <%= cl_image_tag @dojo_space.photos[3].key, height: 300, width: 400, crop: :fill if @dojo_space.photos.attached? %>
+        <% if @dojo_space.photos.attached? %>
+        <%= cl_image_tag @dojo_space.photos[0].key, height: 300, width: 400, crop: :fill %>
+        <% else %>
+        <%= image_tag "dojo3", height: 300, width: 400, crop: :fill   %>
+        <% end %>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
