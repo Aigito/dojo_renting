@@ -1,16 +1,10 @@
-<div class="container">
+<br>
 
-  <br>
-  <h1>Create a New Dojo Space</h1>
-  <br>
-  <%= simple_form_for @dojo_space do |f| %>
-    <%= f.input :name %>
-    <%= f.input :price %>
-    <%= f.input :location %>
-    <%= f.input :martial_art %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit "Save", class: "btn btn-primary" %>
-  <% end %>
-
-</div>
-
+<%= simple_form_for @dojo_space do |f| %>
+  <%= f.input :name %>
+  <%= f.input :price %>
+  <%= f.input :location %>
+  <%= f.input :martial_art %>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>
