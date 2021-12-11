@@ -1,9 +1,11 @@
-<div class="form-inline search-bar d-flex justify-content-between">
-<%= form_tag dojo_spaces_path, method: :get do %>
-      <%= text_field_tag :query,
-      params[:query],
-      class: "form-control search-field",
-      placeholder: "Enter a dojo name, location or martial art"%>
-<%=submit_tag "Search", class: "btn btn-primary"%>
-<% end %>
+<div class="form-inline search-bar d-flex justify-content-center">
+
+  <%= form_tag dojo_spaces_path, method: :get do %>
+        <%= text_field_tag :query,
+        params[:query],
+        class: "form-control search-field",
+        placeholder: "Dojo name, location or martial art"%>
+  <%=submit_tag "Search", class: "btn btn-danger"%>
+  <% end %>
+
 </div>
