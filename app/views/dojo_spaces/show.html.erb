@@ -1,3 +1,4 @@
+<div class="container d-flex justify-content-between">
 <div class="container">
 
   <br>
@@ -10,9 +11,26 @@
   <br>
   <%= link_to "Create a New Booking", new_dojo_space_booking_path(@dojo_space), class: "btn btn-primary" %>
 
-  <%= link_to "Delete #{@dojo_space.name}",
-            dojo_space_path(@dojo_space),
-            method: :delete,
-            data: { confirm: "Are you sure?" }, class: "btn btn-link" %>
+  <% if @dojo_space.user_id == current_user.id %>
+    <%= link_to "Delete #{@dojo_space.name}",
+              dojo_space_path(@dojo_space),
+              method: :delete,
+              data: { confirm: "Are you sure?" }, class: "btn btn-link" %>
+  <% end %>
 
+</div>
+
+<div class = "container">
+
+<br>
+<h1><%= "List of reviews"  %></h1>
+<br>
+
+  <% @dojo_space.bookings.each do |booking|  %>
+  <% booking.reviews.each do |review| %>
+  <p><%= review.content %> <%= review.rating %>/5 </p>
+  <% end %>
+  <% end %>
+
+</div>
 </div>

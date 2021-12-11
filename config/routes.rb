@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :dojo_spaces do
     resources :bookings, except: %i[edit destroy] do
-      resources :reviews, only: %i[create]
+      resources :reviews, only: %i[new create]
     end
   end
 end
