@@ -24,59 +24,69 @@ puts "Creating Users..."
   puts "Created User #{user.first_name} #{user.last_name}"
 end
 
+user = User.create(
+  first_name: "David",
+  last_name: "AJ Wong",
+  email: "somethingwong@gmail.com",
+  password: "123456"
+)
+
 puts "Creating Dojo Spaces..."
 # file = URI.open("https://images.unsplash.com/photo-1530560643359-6d2fead989b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80")
 
-50.times do
+15.times do
   dojo_space = DojoSpace.create(
     name: "#{Faker::Name.first_name}'s Dojo Space",
     price: [35, 50, 75].sample,
     location: "#{Faker::Address.city}",
     martial_art: ["Karate", "Jujiutsu", "Judo"].sample,
-    user_id: rand(1..4)
+    user_id: rand(1..5)
   )
   # dojo_space.photos.attach(io: file, filename: "dojo.jpeg", content_type: "image/jpg")
   puts "Created Space #{dojo_space.name}"
 end
 
 puts "Creating Bookings..."
-20.times do
+5.times do
   booking = Booking.create(
-    start_date: Date.strptime("02-12-2022", "%d-%m-%Y"),
+    start_date: Date.strptime("02-12-2021", "%d-%m-%Y"),
     end_date: Date.strptime("15-1-2022", "%d-%m-%Y"),
     user_id: rand(1..4),
     accepted: [true, false, nil].sample,
-    dojo_space_id: rand(1..50)
+    dojo_space_id: rand(1..15)
   )
   puts "Created Booking for #{DojoSpace.find(booking.dojo_space_id).name}"
+  booking.save(validate: false)
 end
-20.times do
-  booking = Booking.create(
-    start_date: Date.strptime("01-01-2021", "%d-%m-%Y"),
-    end_date: Date.strptime("02-02-2021", "%d-%m-%Y"),
-    user_id: rand(1..4),
-    accepted: [true, false, nil].sample,
-    dojo_space_id: rand(1..50)
-  )
-  puts "Created Booking for #{DojoSpace.find(booking.dojo_space_id).name}"
-end
-10.times do
+5.times do
   booking = Booking.create(
     start_date: Date.strptime("01-01-2022", "%d-%m-%Y"),
     end_date: Date.strptime("02-02-2022", "%d-%m-%Y"),
     user_id: rand(1..4),
     accepted: [true, false, nil].sample,
-    dojo_space_id: rand(1..50)
+    dojo_space_id: rand(1..15)
   )
   puts "Created Booking for #{DojoSpace.find(booking.dojo_space_id).name}"
+  booking.save(validate: false)
+end
+5.times do
+  booking = Booking.create(
+    start_date: Date.strptime("01-01-2021", "%d-%m-%Y"),
+    end_date: Date.strptime("02-02-2021", "%d-%m-%Y"),
+    user_id: rand(1..4),
+    accepted: [true, false, nil].sample,
+    dojo_space_id: rand(1..15)
+  )
+  puts "Created Booking for #{DojoSpace.find(booking.dojo_space_id).name}"
+  booking.save(validate: false)
 end
 
 puts "Creating Reviews..."
-50.times do
+20.times do
   review = Review.create!(
     content: "#{Faker::Restaurant.review}",
     rating: rand(1..4),
-    booking_id: rand(1..20)
+    booking_id: rand(1..15)
   )
   puts "Created review for #{review.booking_id}"
 end
