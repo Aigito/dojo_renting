@@ -5,16 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-def attach_photo(object, url)
-  begin
-    file = URI.open(url)
-    object.photo.attach(io: file, filename: "photo", content_type: "image/jpg")
-  rescue
-    puts "uri fail"
-  end
-end
 
-puts "Cleaning database...
+puts "Cleaning database..."
 
 User.destroy_all
 DojoSpace.destroy_all
@@ -48,19 +40,30 @@ puts "Creating Dojo Spaces..."
 end
 
 puts "Creating Bookings..."
-40.times do
+20.times do
   booking = Booking.create(
-    start_date: Date.strptime("02-02-2022", "%d-%m-%Y"),
-    end_date: Date.strptime("03-02-2022", "%d-%m-%Y"),
+    start_date: Date.strptime("02-12-2022", "%d-%m-%Y"),
+    end_date: Date.strptime("15-1-2022", "%d-%m-%Y"),
     user_id: rand(1..4),
     accepted: [true, false, nil].sample,
     dojo_space_id: rand(1..50)
   )
+  puts "Created Booking for #{DojoSpace.find(booking.dojo_space_id).name}"
 end
-10.times do
+20.times do
   booking = Booking.create(
     start_date: Date.strptime("01-01-2021", "%d-%m-%Y"),
     end_date: Date.strptime("02-02-2021", "%d-%m-%Y"),
+    user_id: rand(1..4),
+    accepted: [true, false, nil].sample,
+    dojo_space_id: rand(1..50)
+  )
+  puts "Created Booking for #{DojoSpace.find(booking.dojo_space_id).name}"
+end
+10.times do
+  booking = Booking.create(
+    start_date: Date.strptime("01-01-2022", "%d-%m-%Y"),
+    end_date: Date.strptime("02-02-2022", "%d-%m-%Y"),
     user_id: rand(1..4),
     accepted: [true, false, nil].sample,
     dojo_space_id: rand(1..50)
@@ -73,7 +76,7 @@ puts "Creating Reviews..."
   review = Review.create!(
     content: "#{Faker::Restaurant.review}",
     rating: rand(1..4),
-    booking_id: rand(1..50)
+    booking_id: rand(1..20)
   )
   puts "Created review for #{review.booking_id}"
 end
