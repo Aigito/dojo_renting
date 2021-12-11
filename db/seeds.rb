@@ -5,7 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "Cleaning database..."
+def attach_photo(object, url)
+  begin
+    file = URI.open(url)
+    object.photo.attach(io: file, filename: "photo", content_type: "image/jpg")
+  rescue
+    puts "uri fail"
+  end
+end
+
+puts "Cleaning database...
 
 User.destroy_all
 DojoSpace.destroy_all
@@ -24,6 +33,8 @@ puts "Creating Users..."
 end
 
 puts "Creating Dojo Spaces..."
+# file = URI.open("https://images.unsplash.com/photo-1530560643359-6d2fead989b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80")
+
 50.times do
   dojo_space = DojoSpace.create(
     name: "#{Faker::Name.first_name}'s Dojo Space",
@@ -32,16 +43,26 @@ puts "Creating Dojo Spaces..."
     martial_art: ["Karate", "Jujiutsu", "Judo"].sample,
     user_id: rand(1..4)
   )
+  # dojo_space.photos.attach(io: file, filename: "dojo.jpeg", content_type: "image/jpg")
   puts "Created Space #{dojo_space.name}"
 end
 
 puts "Creating Bookings..."
-50.times do
+40.times do
   booking = Booking.create(
-    start_date: Date.strptime("03-02-2022", "%d-%m-%Y"),
+    start_date: Date.strptime("02-02-2022", "%d-%m-%Y"),
     end_date: Date.strptime("03-02-2022", "%d-%m-%Y"),
     user_id: rand(1..4),
-    accepted: [true, false].sample,
+    accepted: [true, false, nil].sample,
+    dojo_space_id: rand(1..50)
+  )
+end
+10.times do
+  booking = Booking.create(
+    start_date: Date.strptime("01-01-2021", "%d-%m-%Y"),
+    end_date: Date.strptime("02-02-2021", "%d-%m-%Y"),
+    user_id: rand(1..4),
+    accepted: [true, false, nil].sample,
     dojo_space_id: rand(1..50)
   )
   puts "Created Booking for #{DojoSpace.find(booking.dojo_space_id).name}"
