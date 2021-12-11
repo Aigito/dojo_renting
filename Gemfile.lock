@@ -103,6 +103,7 @@ GEM
     ffi (1.15.4)
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
+    geocoder (1.7.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     http-accept (1.7.0)
@@ -135,6 +136,8 @@ GEM
       stringio
       time
       uri
+    nokogiri (1.12.5-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.2.3)
     pg_search (2.3.5)
@@ -266,6 +269,7 @@ GEM
 PLATFORMS
   x86_64-darwin-17
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   autoprefixer-rails (= 10.2.5)
@@ -277,6 +281,7 @@ DEPENDENCIES
   dotenv-rails
   faker
   font-awesome-sass
+  geocoder
   listen (~> 3.2)
   open-uri
   pg (>= 0.18, < 2.0)

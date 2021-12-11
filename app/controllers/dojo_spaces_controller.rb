@@ -8,9 +8,11 @@ class DojoSpacesController < ApplicationController
     else
       @dojo_spaces = DojoSpace.all
     end
+
   end
 
   def show
+    @reviews = Review.all
   end
 
   def edit
@@ -47,6 +49,7 @@ class DojoSpacesController < ApplicationController
   end
 
   private
+
 
   def find_dojo_space
     @dojo_space = DojoSpace.find(params[:id])

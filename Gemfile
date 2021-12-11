@@ -35,6 +35,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'faker'
 gem "cloudinary", "~> 1.16.0"
+gem 'geocoder'
 gem "open-uri"
 
 group :development, :test do

@@ -1,15 +1,20 @@
-<div class="container">
-  <h1>Dashboard - <%= current_user.first_name%> <%= current_user.last_name%></h1>
+<%# <% require 'Date' %>
 
-  <h3>My Bookings</h3>
-    <table class="table">
-        <tr>
-          <th>Booking ID</th>
-          <th>Dojo Space</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>Booking Status</th>
-        </tr>
+<div class="container">
+
+  <h1>My Bookings</h1>
+    <br>
+    <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th>Booking ID</th>
+            <th>Dojo Space</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Booking Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
         <% @bookings.each do |booking| %>
           <% if booking.user == current_user %>
             <tr>
@@ -18,25 +23,41 @@
               <td><%= booking.start_date %></td>
               <td><%= booking.end_date %></td>
               <td>
-                <%= "PENDING" if booking.accepted == nil %>
-                <%= "ACCEPTED" if booking.accepted == true %>
+                <%= "PENDING" if booking.accepted == nil && Date.today <= booking.end_date %>
+                <%= "EXPIRED" if booking.accepted == nil && Date.today > booking.end_date%>
+                <%= "COMPLETED" if booking.accepted == true && (Date.today > booking.end_date) %>
+                <%= "IN PROGRESS" if booking.accepted == true && ((Date.today >= booking.start_date && Date.today <= booking.end_date) || (Date.today <= booking.end_date && Date.today > booking.start_date)) %>
+                <%= "ACCEPTED" if booking.accepted == true && (Date.today < booking.start_date) %>
                 <%= "DECLINED" if booking.accepted == false %>
+              </td>
+              <td>
+              <% if booking.accepted == true && (Date.today > booking.end_date) || booking.accepted == nil && Date.today > booking.end_date%>
+                <% dojo_space = @dojo_spaces.find(booking.dojo_space_id) %>
+                <%= link_to "Leave a review", new_dojo_space_booking_review_path(dojo_space, booking) %>
+              <% else %>
+                <%= "No actions at this time" %>
+              <% end %>
               </td>
             </tr>
           <% end %>
         <% end %>
       </table>
 
-  <h3>My Booking Requests</h3>
-    <table class="table">
-      <tr>
-        <th>Booking ID</th>
-        <th>Dojo Space</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Booking Status</th>
-        <th>Actions</th>
-      </tr>
+  <br>
+
+  <h1>My Rental Requests</h1>
+    <br>
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>Booking ID</th>
+          <th>Dojo Space</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Booking Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
       <% @bookings.each do |booking| %>
         <% if booking.dojo_space.user_id == current_user.id %>
           <tr>
@@ -45,29 +66,44 @@
             <td><%= booking.start_date %></td>
             <td><%= booking.end_date %></td>
             <td>
-              <%= "PENDING" if booking.accepted == nil %>
-              <%= "ACCEPTED" if booking.accepted == true %>
+              <%= "PENDING" if booking.accepted == nil && Date.today <= booking.end_date %>
+              <%= "EXPIRED" if booking.accepted == nil && Date.today > booking.end_date%>
+              <%= "COMPLETED" if booking.accepted == true && Date.today > booking.end_date %>
+              <%= "IN PROGRESS" if booking.accepted == true && ((Date.today >= booking.start_date && Date.today <= booking.end_date) || (Date.today <= booking.end_date && Date.today > booking.start_date)) %>
+              <%= "ACCEPTED" if booking.accepted == true && Date.today < booking.start_date %>
               <%= "DECLINED" if booking.accepted == false %>
             </td>
             <td>
+            <% if booking.accepted == (true || false) && (Date.today >= booking.start_date || Date.today <= booking.end_date && Date.today > booking.start_date) %>
+            <%= "No actions at this time" %>
+            <% elsif booking.accepted == nil && Date.today > booking.end_date %>
+              <%= "Booking request expired" %>
+            <% else %>
               <%= link_to 'ACCEPT', accept_booking_path(booking), method: :post%>
               <%= link_to 'DENY', deny_booking_path(booking), method: :post%>
+            <% end %>
             </td>
           </tr>
         <% end %>
       <% end %>
     </table>
 
-    <h3 style="display: inline-block">My Dojos</h3>
+    <br>
+    <h1 style="display: inline-block">My Dojos</h1>
     <%= link_to "Add a New Dojo Space", new_dojo_space_path, class: "btn btn-link" %>
 
-    <table class="table">
-      <tr>
-        <th>Dojo Space</th>
-        <th>Price per Day</th>
-        <th>Location</th>
-        <th>Suitable For</th>
-      </tr>
+    <br>
+    <br>
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>Dojo Space</th>
+          <th>Price per Day</th>
+          <th>Location</th>
+          <th>Suitable For</th>
+          <th></th>
+        </tr>
+      </thead>
       <% @dojo_spaces.each do |space| %>
         <% if space.user == current_user %>
           <tr>
