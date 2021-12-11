@@ -1,18 +1,20 @@
 <%# <% require 'Date' %>
 
 <div class="container">
-  <h1>Dashboard - <%= current_user.first_name%> <%= current_user.last_name%></h1>
 
-  <h3>My Bookings</h3>
-    <table class="table">
-        <tr>
-          <th>Booking ID</th>
-          <th>Dojo Space</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>Booking Status</th>
-          <th>Actions</th>
-        </tr>
+  <h1>My Bookings</h1>
+    <br>
+    <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th>Booking ID</th>
+            <th>Dojo Space</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Booking Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
         <% @bookings.each do |booking| %>
           <% if booking.user == current_user %>
             <tr>
@@ -41,16 +43,21 @@
         <% end %>
       </table>
 
-  <h3>My Booking Requests</h3>
-    <table class="table">
-      <tr>
-        <th>Booking ID</th>
-        <th>Dojo Space</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Booking Status</th>
-        <th>Actions</th>
-      </tr>
+  <br>
+
+  <h1>My Rental Requests</h1>
+    <br>
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>Booking ID</th>
+          <th>Dojo Space</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Booking Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
       <% @bookings.each do |booking| %>
         <% if booking.dojo_space.user_id == current_user.id %>
           <tr>
@@ -81,16 +88,22 @@
       <% end %>
     </table>
 
-    <h3 style="display: inline-block">My Dojos</h3>
+    <br>
+    <h1 style="display: inline-block">My Dojos</h1>
     <%= link_to "Add a New Dojo Space", new_dojo_space_path, class: "btn btn-link" %>
 
-    <table class="table">
-      <tr>
-        <th>Dojo Space</th>
-        <th>Price per Day</th>
-        <th>Location</th>
-        <th>Suitable For</th>
-      </tr>
+    <br>
+    <br>
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>Dojo Space</th>
+          <th>Price per Day</th>
+          <th>Location</th>
+          <th>Suitable For</th>
+          <th></th>
+        </tr>
+      </thead>
       <% @dojo_spaces.each do |space| %>
         <% if space.user == current_user %>
           <tr>
